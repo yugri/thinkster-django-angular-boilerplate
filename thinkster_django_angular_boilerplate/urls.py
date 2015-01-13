@@ -7,7 +7,7 @@ from authentication.views import AccountViewSet
 from django.conf.urls import include, patterns, url
 
 router = routers.SimpleRouter()
-router.register(r'account', AccountViewSet)
+router.register(r'accounts', AccountViewSet)
 
 urlpatterns = patterns(
     '',
