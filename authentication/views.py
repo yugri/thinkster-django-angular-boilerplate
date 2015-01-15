@@ -1,10 +1,12 @@
 import json
-from django.contrib.auth import authenticate, login
-from rest_framework import permissions, views, viewsets, status
+
+from django.contrib.auth import authenticate, login, logout
+
+from rest_framework import permissions, status, views, viewsets
 from rest_framework.response import Response
 
-from authentication.models import Account
 from authentication.permissions import IsAccountOwner
+from authentication.models import Account
 from authentication.serializers import AccountSerializer
 
 
@@ -22,21 +24,17 @@ class AccountViewSet(viewsets.ModelViewSet):
 
         return (permissions.IsAuthenticated(), IsAccountOwner(),)
 
+    def create(self, request, **kwargs):
+        serializer = self.serializer_class(data=request.data)
 
-def create(self, request):
-    serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            Account.objects.create_user(**serializer.validated_data)
 
-    if serializer.is_valid():
-        account = Account.objects.create_user(**request.DATA)
-
-        account.set_password(request.DATA.get('password'))
-        account.save()
-
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response({
-        'status': 'Bad request',
-        'message': 'Account could not be created with received data.'
-    }, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+        return Response({
+            'status': 'Bad request',
+            'message': 'Account could not be created with received data.'
+        }, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LoginView(views.APIView):
@@ -65,3 +63,12 @@ class LoginView(views.APIView):
                 'status': 'Unauthorized',
                 'message': 'Username/password combination invalid.'
             }, status=status.HTTP_401_UNAUTHORIZED)
+
+
+class LogoutView(views.APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, format=None):
+        logout(request)
+
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
