@@ -1,26 +1,57 @@
-<nav class="navbar navbar-default" role="navigation" ng-controller="NavbarController as vm">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#not-google-plus-nav">
-        <span class="sr-only">Toggle Navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Not Google Plus</a>
-    </div> <!-- ./navbar-header -->
+{#<nav class="navbar navbar-default" role="navigation" ng-controller="NavbarController as vm">#}
+{#  <div class="container-fluid">#}
+{#    <div class="navbar-header">#}
+{#      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#not-google-plus-nav">#}
+{#        <span class="sr-only">Toggle Navigation</span>#}
+{#        <span class="icon-bar"></span>#}
+{#        <span class="icon-bar"></span>#}
+{#        <span class="icon-bar"></span>#}
+{#      </button>#}
+{#      <a class="navbar-brand" href="/">Not Google Plus</a>#}
+{#    </div> <!-- ./navbar-header -->#}
+{##}
+{#    <div class="collapse navbar-collapse" id="not-google-plus-nav">#}
+{#      <ul class="nav navbar-nav pull-right">#}
+{#        {% if user.is_authenticated %}#}
+{#          <li><a href="/+{{ user.username }}">+{{ user.username }}</a></li>#}
+{#          <li><a href="/+{{ user.username }}/settings">Settings</a></li>#}
+{#          <li><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>#}
+{#        {% else %}#}
+{#          <li><a href="/login">Login</a></li>#}
+{#          <li><a href="/register">Register</a></li>#}
+{#        {% endif %}#}
+{#      </ul>#}
+{#    </div> <!-- /.collapse.navbar-collapse -->#}
+{#  </div> <!-- /.container-fluid -->#}
+{#</nav>#}
 
-    <div class="collapse navbar-collapse" id="not-google-plus-nav">
-      <ul class="nav navbar-nav pull-right">
+
+<!-- Container #1 -->
+<md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+        <a href="{% url 'index' %}">Ang pos app</a>
+        <span flex></span>
         {% if user.is_authenticated %}
-          <li><a href="/+{{ user.username }}">+{{ user.username }}</a></li>
-          <li><a href="/+{{ user.username }}/settings">Settings</a></li>
-          <li><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
-        {% else %}
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
+            <md-button class="md-fab" aria-label="Custom Icon Button">
+                <md-icon md-svg-icon="path/to/your.svg"></md-icon>
+            </md-button>
+            {% else %}
+            <md-button>
+                <a href="/login">Login</a>
+            </md-button>
+            <md-button>
+                <a href="/register">Register</a>
+            </md-button>
         {% endif %}
-      </ul>
-    </div> <!-- /.collapse.navbar-collapse -->
-  </div> <!-- /.container-fluid -->
-</nav>
+    </div>
+</md-toolbar>
+
+<!-- Container #2 --->
+<div flex layout="row">
+    <!-- Container #3 -->
+    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2"></md-sidenav>
+
+    <!-- Container #4 -->
+    <md-content flex id="content">
+    </md-content>
+</div>
