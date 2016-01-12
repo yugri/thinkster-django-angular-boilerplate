@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="thinkster">
+<html>
 <head>
   <title>xpos</title>
 
@@ -8,14 +8,10 @@
   {% include 'stylesheets.html' %}
 </head>
 
-<body layout="column">
+<body ng-app="thinkster" ng-cloak>
   {% include 'navbar.html' %}
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 ng-view"></div>
-    </div>
-  </div>
+      <ng-view></ng-view>
 
   {% include 'javascripts.html' %}
 </body>

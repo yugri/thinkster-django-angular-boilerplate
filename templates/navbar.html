@@ -27,13 +27,14 @@
 
 
 <!-- Container #1 -->
-<md-toolbar layout="row">
+<md-toolbar layout="row" ng-controller="NavbarController as vm">
     <div class="md-toolbar-tools">
         <a href="{% url 'index' %}">Ang pos app</a>
         <span flex></span>
         {% if user.is_authenticated %}
-            <md-button class="md-fab" aria-label="Custom Icon Button">
-                <md-icon md-svg-icon="path/to/your.svg"></md-icon>
+            <md-button ng-disabled="true" href="/+{{ user.username }}">+{{ user.username }}</md-button>
+            <md-button ng-click="vm.logout()" aria-label="Custom Icon Button">
+                Logout
             </md-button>
             {% else %}
             <md-button>
@@ -45,13 +46,3 @@
         {% endif %}
     </div>
 </md-toolbar>
-
-<!-- Container #2 --->
-<div flex layout="row">
-    <!-- Container #3 -->
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2"></md-sidenav>
-
-    <!-- Container #4 -->
-    <md-content flex id="content">
-    </md-content>
-</div>
