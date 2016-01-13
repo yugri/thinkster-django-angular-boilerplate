@@ -37,10 +37,11 @@ INSTALLED_APPS = (
     'rest_framework',
     'compressor',
 
-    'authentication',
-    'posts',
+    'authentication.apps.AuthenticationConfig',
+    # 'posts',
     'warehouse.apps.WarehouseConfig',
-    'menu.apps.MenuConfig'
+    'menu.apps.MenuConfig',
+    'finances.apps.FinancesConfig',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,7 +109,7 @@ COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/yuri/dev/loyalty/templates'],
+        'DIRS': ['/home/tower/dev/djangupos/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

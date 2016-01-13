@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from finances.models import FinAccount
+
+admin.site.register(FinAccount)
