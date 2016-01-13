@@ -2,30 +2,16 @@
 {% load staticfiles %}
 
 {% compress js %}
-<script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
-{#<script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static 'bower_components/bootstrap-material-design/dist/js/material.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static 'bower_components/bootstrap-material-design/dist/js/ripples.js' %}"></script>#}
-<script type="text/javascript" src="{% static 'bower_components/angular/angular.js' %}"></script>
-<script type="text/javascript" src="{% static 'bower_components/angular-aria/angular-aria.js' %}"></script>
-<script type="text/javascript" src="{% static 'bower_components/angular-animate/angular-animate.js' %}"></script>
-<script type="text/javascript" src="{% static 'bower_components/angular-material/angular-material.js' %}"></script>
-<script type="text/javascript" src="{% static 'bower_components/underscore/underscore.js' %}"></script>
-
-<script type="text/javascript" src="{% static 'bower_components/angular-route/angular-route.js' %}"></script>
-<script type="text/javascript" src="{% static 'bower_components/angular-cookies/angular-cookies.js' %}"></script>
-
-{#<script type="text/javascript" src="{% static 'bower_components/ngDialog/js/ngDialog.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static 'lib/snackbarjs/snackbar.min.js' %}"></script>#}
-{##}
-<script type="text/javascript" src="{% static 'javascripts/thinkster.js' %}"></script>
-
-<script type="text/javascript" src="{% static 'javascripts/thinkster.config.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/thinkster.routes.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/authentication/authentication.module.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/authentication/services/authentication.service.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/authentication/controllers/register.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/authentication/controllers/login.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/layout.module.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/controllers/navbar.controller.js' %}"></script>
+<!-- jQuery 2.1.4 -->
+<script src="{% static 'lib/AdminLTE-2.3.0/plugins/jQuery/jQuery-2.1.4.min.js' %}"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="{% static 'lib/AdminLTE-2.3.0/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- SlimScroll -->
+<script src="{% static 'lib/AdminLTE-2.3.0/plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<!-- FastClick -->
+<script src="{% static 'lib/AdminLTE-2.3.0/plugins/fastclick/fastclick.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'lib/AdminLTE-2.3.0/dist/js/app.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'lib/AdminLTE-2.3.0/dist/js/demo.js' %}"></script>
 {% endcompress %}

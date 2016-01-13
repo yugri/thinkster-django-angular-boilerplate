@@ -39,6 +39,8 @@ INSTALLED_APPS = (
 
     'authentication',
     'posts',
+    'warehouse.apps.WarehouseConfig',
+    'menu.apps.MenuConfig'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,7 +108,7 @@ COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates', ],
+        'DIRS': ['/home/yuri/dev/loyalty/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
