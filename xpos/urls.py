@@ -13,11 +13,11 @@ router.register(r'accounts', AccountViewSet)
 
 urlpatterns = [
     # ... URLs
-    # Bound Django admin interface
-    url(r'^admin/', admin.site.urls),
-
     # Warehouse app URLs
     url(r'^warehouse/', include('warehouse.urls')),
+
+    # Bound Django admin interface
+    url(r'^admin/', admin.site.urls),
 
     # API V1 URLs
     url(r'^api/v1/', include(router.urls)),

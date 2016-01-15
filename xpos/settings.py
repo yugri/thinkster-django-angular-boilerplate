@@ -20,31 +20,44 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '$6(x*g_2g9l_*g8peb-@anl5^*8q!1w)k&e&2!i)t6$s8kia94'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG = os.environ.get('DEBUG', False)
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
-INSTALLED_APPS = (
+SHARED_APPS = [
+    'tenant_schemas',
+    'main',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    # 'rest_framework',
+    'authentication',
     'compressor',
 
-    'authentication.apps.AuthenticationConfig',
-    # 'posts',
-    'warehouse.apps.WarehouseConfig',
-    'menu.apps.MenuConfig',
-    'finances.apps.FinancesConfig',
-)
+]
+
+TENANT_APPS = [
+    'django.contrib.contenttypes',
+    'warehouse',
+    'menu',
+    'finances',
+]
+
+INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
+
+TENANT_MODEL = "main.Client"  # app.Model
+
 
 MIDDLEWARE_CLASSES = (
+    'tenant_schemas.middleware.TenantMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -70,12 +83,16 @@ DATABASES = {
     )
 }
 
+DATABASE_ROUTERS = (
+    'tenant_schemas.routers.TenantSyncRouter',
+)
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uk-UA'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -109,10 +126,11 @@ COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/tower/dev/djangupos/templates'],
+        'DIRS': ['/home/yuri/dev/loyalty/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.core.context_processors.request',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -137,3 +155,17 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'authentication.Account'
+
+
+##################
+# LOCAL SETTINGS #
+##################
+
+# Allow any settings to be defined in local_settings.py which should be
+# ignored in your version control system allowing for settings to be
+# defined per machine.
+try:
+    from local_settings import *
+except ImportError as e:
+    if "local_settings" not in str(e):
+        raise e

@@ -7,15 +7,16 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from authentication.models import Account
+from main.models import SellPoint
 from menu.models import Ingredient
 from finances.models import FinAccount
 
 
 class Warehouse(models.Model):
     date_created = models.DateField(auto_now_add=True)
-    name = models.CharField(max_length=55, blank=False, help_text=_('Specify the warehouse name'))
-    address = models.TextField(max_length=255, help_text=_('Add address'))
-    # shop = models.ForeignKey()
+    name = models.CharField(max_length=55, blank=False, help_text=_('Specify the warehouse name.'))
+    address = models.TextField(max_length=255, help_text=_('Add address.'))
+    sell_point = models.ManyToManyField(SellPoint, help_text=_('Bound warehouse to one or many sell points.'))
 
     def __str__(self):
         return self.name
