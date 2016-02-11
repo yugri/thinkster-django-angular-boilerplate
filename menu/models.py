@@ -23,9 +23,13 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=128, blank=False, help_text=_('Specify product/ingredient name'))
     type = models.CharField(max_length=50, blank=False, choices=PRODUCT_TYPE_CHOICES, null=True)
-    sku = models.CharField(max_length=50, help_text=_('Stock Keeping Unit'), blank=True)
     measure_units = models.CharField(max_length=5, choices=MEASURE_UNIT_CHOICES, blank=True,
                                      null=True, help_text=_('Choose the measure units'))
+    category = models.CharField(max_length=50, blank=True, null=True)
+    department = models.CharField(max_length=50, blank=True, null=True)
+    sku = models.CharField(max_length=50, blank=True, null=True)
+    barcode = models.CharField(max_length=15, blank=True, null=True)
+    if_discountable = models.NullBooleanField(blank=True, null=True)
 
     def __str__(self):
         return self.name
