@@ -6,7 +6,7 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">{% trans "Supplies" %}</h3>
+        <h3 class="box-title">{% trans "Write Offs" %}</h3>
         <div class="box-tools">
           <div class="input-group" style="width: 150px;">
             <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
@@ -21,23 +21,15 @@
           <tr>
             <th>{% trans "Date" %}</th>
             <th>{% trans "Warehouse" %}</th>
-            <th>{% trans "Supplier" %}</th>
-            {% if request.user.is_admin %}
-            <th>{% trans "Account" %}</th>
-            {% endif %}
             <th>{% trans "User" %}</th>
-            <th>{% trans "Total" %}</th>
+{#            <th>{% trans "Total" %}</th>#}
           </tr>
-          {% for supply in object_list %}
+          {% for writeoff in object_list %}
             <tr>
-              <td>{{ supply.date_created }}</td>
-              <td>{{ supply.warehouse }}</td>
-              <td>{{ supply.supplier }}</td>
-              {% if request.user.is_admin %}
-              <td>{{ supply.account }}</td>
-              {% endif %}
-              <td>{{ supply.user }}</td>
-              <td>{{ supply.total }}</td>
+              <td>{{ writeoff.date_created }}</td>
+              <td>{{ writeoff.warehouse }}</td>
+              <td>{{ writeoff.user }}</td>
+{#              <td>{{ supply.total }}</td>#}
             </tr>
           {% endfor %}
         </table>

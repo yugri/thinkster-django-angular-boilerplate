@@ -86,3 +86,63 @@ class Supply(models.Model):
         for item in supply_units:
             total += item.total
         return total
+
+
+class WriteOffUnit(models.Model):
+    warehouse = models.ForeignKey(Warehouse, null=True)
+    product = models.ForeignKey(Product, help_text=_('Select product/ingredient'), null=True)
+    quantity = models.IntegerField(default=1)
+    init_date = models.DateTimeField(auto_now_add=True, null=True)
+    write_off = models.ForeignKey('WriteOff', null=True)
+
+    def __str__(self):
+        return '%s (%s)' % (self.product.name, self.product.sku)
+
+    def __unicode__(self):
+        return '%s (%s)' % (self.product.name, self.product.sku)
+
+    # @property
+    # def total(self):
+    #     return self.quantity * self.cost
+
+    def get_balance(self):
+        """
+        Method for getting available products on given warehouse
+        :return: SupplyUnit objects list
+        """
+        products = StorageUnit.objects.filter(warehouse=self.warehouse, product=self.product)
+
+        return products
+
+    @property
+    def name(self):
+        return self.product.name
+
+    @property
+    def sku(self):
+        return self.product.sku
+
+
+class WriteOff(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    warehouse = models.ForeignKey(Warehouse, blank=False, null=True)
+    last_updated = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(Account, null=True)
+
+    class Meta:
+        ordering = ["-date_created"]
+        verbose_name_plural = _("write_offs")
+
+    def __str__(self):              # __unicode__ on Python 2
+        return "-".join(["#%d" % self.pk, _("%s") % self.date_created])
+
+    def __unicode__(self):
+        return "-".join(["#%d" % self.pk, _("%s") % self.date_created])
+
+    @property
+    def total(self):
+        total = decimal.Decimal('0.00')
+        supply_units = WriteOffUnit.objects.filter(write_off=self)
+        for item in supply_units:
+            total += item.total
+        return total
