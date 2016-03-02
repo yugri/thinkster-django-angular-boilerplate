@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.db import models
 
+from headquarter.models import SellPoint
+
 
 class ProductManager(models.Manager):
     pass
@@ -36,3 +38,18 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def prices(self):
+        prices = ProductPrice.objects.filter(product=self)
+        return prices
+
+
+class ProductPrice(models.Model):
+    product = models.ForeignKey(Product)
+    sell_point = models.ForeignKey(SellPoint)
+    price = models.DecimalField(max_digits=9, decimal_places=2, default=0.00, null=True)
+    cost = models.DecimalField(max_digits=9, decimal_places=2, default=0.00, blank=True, null=True)
+    markup = models.DecimalField(max_digits=9, decimal_places=2, default=0.00, blank=True, null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)

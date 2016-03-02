@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'warehouse.apps.WarehouseConfig',
     'menu.apps.MenuConfig',
     'finances.apps.FinancesConfig',
+    'headquarter.apps.HeadquarterConfig',
 )
 
 MIDDLEWARE_CLASSES = (

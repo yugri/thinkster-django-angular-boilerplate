@@ -19,6 +19,9 @@ urlpatterns = [
     # Warehouse app URLs
     url(r'^warehouse/', include('warehouse.urls')),
 
+    # Menu app URLs
+    url(r'^menu/', include('menu.urls')),
+
     # API V1 URLs
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
