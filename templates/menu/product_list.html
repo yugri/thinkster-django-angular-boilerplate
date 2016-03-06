@@ -28,7 +28,9 @@
           {% for product in object_list %}
             <tr>
               <td>{{ product.name }}</td>
-              <td>{{ product.category }}</td>
+              <td>{% for category in product.category.all %}
+                    {{ category.name }}{% if not forloop.last %}<span>, </span>{% endif %}
+              {% endfor %}</td>
             </tr>
           {% endfor %}
         </table>

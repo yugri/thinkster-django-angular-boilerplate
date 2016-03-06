@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from headquarter.models import SellPoint
+
+admin.site.register(SellPoint)
