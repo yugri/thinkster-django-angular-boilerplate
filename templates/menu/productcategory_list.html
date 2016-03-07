@@ -9,7 +9,7 @@
         <h3 class="box-title">{% trans "Products" %}</h3>
         <div class="box-tools">
           <div class="input-group" style="width: 150px;">
-            <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+            <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder={% trans "Search" %}>
             <div class="input-group-btn">
               <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
             </div>
@@ -19,7 +19,7 @@
       <div class="box-body table-responsive no-padding">
         {% load mptt_tags %}
         <ul>
-          {% recursetree nodes %}
+          {% recursetree product_categories %}
             <li>
               {{ node.name }}
               {% if not node.is_leaf_node %}

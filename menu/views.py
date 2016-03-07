@@ -12,10 +12,10 @@ class ProductsList(ListView):
 
 class ProductCategoriesList(ListView):
     model = ProductCategory
-    context_object_name = 'category'
+    context_object_name = 'product_categories'
 
 
-def show_categories(request):
-    return render_to_response("menu/productcategory_list.html",
-                              {'nodes': ProductCategory.objects.all()},
-                              context_instance=RequestContext(request))
+# def show_categories(request):
+#     return render_to_response("menu/productcategory_list.html",
+#                               {'nodes': ProductCategory.objects.all()},
+#                               context_instance=RequestContext(request))
