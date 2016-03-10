@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('thinkster.layout', [
-            'thinkster.layout.controllers'
+        .module('posspa.layout', [
+            'posspa.layout.controllers'
         ]);
 
     angular
-        .module('thinkster.layout.controllers', []);
+        .module('posspa.layout.controllers', []);
 })();

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('thinkster.routes')
+    .module('posspa.routes')
     .config(config);
 
   config.$inject = ['$routeProvider'];
@@ -12,11 +12,11 @@
   * @desc Define valid application routes
   */
   function config($routeProvider) {
-    $routeProvider.when('/register', {
+    $routeProvider.when('/pos/register', {
       controller: 'RegisterController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/authentication/register.html'
-    }).when('/login', {
+    }).when('/pos/login', {
         controller: 'LoginController',
         controllerAs: 'vm',
         templateUrl: '/static/templates/authentication/login.html'

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="posspa">
+<head>
+  <title>POS Single Page Application</title>
+
+  <base href="/pos/">
+
+  {% include 'sales/stylesheets.html' %}
+</head>
+
+<body>
+  {% include 'sales/navbar.html' %}
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 ng-view"></div>
+    </div>
+  </div>
+
+  {% include 'sales/javascripts.html' %}
+</body>
+</html>

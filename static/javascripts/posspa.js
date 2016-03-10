@@ -2,22 +2,22 @@
   'use strict';
 
   angular
-    .module('thinkster', [
-      'thinkster.config',
-      'thinkster.routes',
-      'thinkster.authentication',
-      'thinkster.layout',
+    .module('posspa', [
+      'posspa.config',
+      'posspa.routes',
+      'posspa.authentication',
+      'posspa.layout',
       'ngMaterial'
     ]);
 
   angular
-    .module('thinkster.config', []);
+    .module('posspa.config', []);
 
   angular
-    .module('thinkster.routes', ['ngRoute']);
+    .module('posspa.routes', ['ngRoute']);
 
   angular
-    .module('thinkster')
+    .module('posspa')
     .run(run);
 
   run.$inject = ['$http'];

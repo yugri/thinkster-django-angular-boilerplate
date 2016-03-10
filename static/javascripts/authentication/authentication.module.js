@@ -2,14 +2,14 @@
   'use strict';
 
   angular
-    .module('thinkster.authentication', [
-      'thinkster.authentication.controllers',
-      'thinkster.authentication.services'
+    .module('posspa.authentication', [
+      'posspa.authentication.controllers',
+      'posspa.authentication.services'
     ]);
 
   angular
-    .module('thinkster.authentication.controllers', []);
+    .module('posspa.authentication.controllers', []);
 
   angular
-    .module('thinkster.authentication.services', ['ngCookies']);
+    .module('posspa.authentication.services', ['ngCookies']);
 })();
